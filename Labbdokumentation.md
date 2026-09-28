@@ -9,7 +9,7 @@ Kurs: Introduktion till yrkesrollen och grunderna i IT-infrastruktur (MYH 2025/4
 
 Denna dokumentation beskriver uppsättningen av en virtuell labbmiljö med en Linux-server och en Windows-klient. Dokumentationen innehåller även kommandoradsarbete i Linux och Windows, Git-versionering samt en kritisk reflektion kring användningen av generativ AI.
 
-## Labbmiljö & Nätverk
+## Labbmiljö & Nätverk (kursmål 8)
 
 Labbmiljön består av två virtuella maskiner som körs i UTM. Linux-servern och Windows-klienten är anslutna till samma Host-Only-nätverk, `Network 0`, så att de kan kommunicera med varandra.
 
@@ -22,33 +22,97 @@ Linux använder den statiska IP-adressen `192.168.1.50/24` och Windows använder
 
 Kommunikationen testades i båda riktningarna. Från Linux användes `ping 192.168.1.51` och från Windows användes `Test-Connection 192.168.1.50`. Båda testerna lyckades.
 
-Kommandoradsgenomförande 
-Linux – Bash
+## Kommandoradsgenomförande (Kursmål 9) 
+
+ ### Linux – Bash
 Katalogen /var/systementor/konsultdata skapades via kommandoraden:
+
 sudo mkdir -p /var/systementor/konsultdata
+
 Filen anteckningar.txt skapades:
+
 sudo touch /var/systementor/konsultdata/anteckningar.txt
+
 Gruppen konsulter skapades:
+
 sudo groupadd konsulter
+
 Katalogen och filen tilldelades gruppen konsulter:
+
+sudo chgrp konsulter /var/systementor/konsultdata
+
+sudo chgrp konsulter /var/systementor/konsultdata/anteckningar.txt
+
+Behörigheterna sattes enligt principen om lägsta behörighet:
+
+sudo chmod 750 /var/systementor/konsultdata
+
+sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
+
+Behörigheterna kontrollerades med:
+
+sudo ls -la /var/systementor/konsultdata
+
+Nätverksanslutningen till Windows-VM verifierades med:
+
+ping 192.168.1.51
+
+Linux-serverns nätverkskort kontrollerades med:
+
+ip addr show
+
+Nätverkskortet enp0s1 hade IPv4-adressen 192.168.1.50/24 och var aktivt.
+
+ ### Windows – PowerShell
+ 
+Mappen C:\Systementor\KonsultData skapades via PowerShell:
+
+New-Item -ItemType Directory -Path "C:\Systementor\KonsultData" -Force
+
+Behörighetsstrukturen för mappen kontrollerades med:
+
+Get-Acl "C:\Systementor\KonsultData"
+
+Nätverksanslutningen till Linux-VM verifierades med:
+
+Test-Connection 192.168.1.50
+
+Windows nätverksinställningar kontrollerades med:
+
+ipconfig /all
+
+## AI-logg & Reflektion (Kursmål 11)
+
+### Exakt prompt
+
+> hur skapar jag en grupp i Linux, tilldelar mappen och filen till gruppen konsulter och ställer in behörigheter enligt principen om lägsta behörighet
+
+### AI-verktygets svar
+
+AI rekommenderade att skapa gruppen med:
+
+```bash
+sudo groupadd konsulter
+```
+
+Därefter rekommenderades att tilldela katalogen och filen gruppen `konsulter` med:
+
+```bash
 sudo chgrp konsulter /var/systementor/konsultdata
 sudo chgrp konsulter /var/systementor/konsultdata/anteckningar.txt
-Behörigheterna sattes enligt principen om lägsta behörighet:
+```
+
+För att ställa in behörigheterna rekommenderades:
+
+```bash
 sudo chmod 750 /var/systementor/konsultdata
 sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
-Behörigheterna kontrollerades med:
-sudo ls -la /var/systementor/konsultdata
-Nätverksanslutningen till Windows-VM verifierades med:
-ping 192.168.1.51
-Linux-serverns nätverkskort kontrollerades med:
-ip addr show
-Nätverkskortet enp0s1 hade IPv4-adressen 192.168.1.50/24 och var aktivt.
-Windows – PowerShell
-Mappen C:\Systementor\KonsultData skapades via PowerShell:
-New-Item -ItemType Directory -Path "C:\Systementor\KonsultData" -Force
-Behörighetsstrukturen för mappen kontrollerades med:
-Get-Acl "C:\Systementor\KonsultData"
-Nätverksanslutningen till Linux-VM verifierades med:
-Test-Connection 192.168.1.50
-Windows nätverksinställningar kontrollerades med:
-ipconfig /all
+```
+
+### Kritisk granskning och verifiering (11)
+
+Jag kontrollerade AI:s förslag genom att köra kommandona i min Linux-VM. Gruppen `konsulter` skapades utan fel. Därefter kontrollerades katalogen och filen med `ls -la`.
+
+Jag verifierade även nätverksinställningarna med `ip addr show` och nätverksanslutningen med `ping`. På detta sätt kontrollerades att kommandona fungerade i den aktuella labbmiljön.
+
+AI-svaret användes som stöd, men kommandona verifierades praktiskt innan resultatet dokumenterades.
