@@ -76,24 +76,21 @@ Nätverkskortet enp0s1 hade IPv4-adressen 192.168.1.50/24 och var aktivt.
 
 Mappen C:\Systementor\KonsultData skapades via PowerShell:
 
-```powershell
 New-Item -ItemType Directory -Path "C:\Systementor\KonsultData" -Force
 
 Behörighetsstrukturen för mappen kontrollerades med:
 
-```powershell
 Get-Acl "C:\Systementor\KonsultData"
 
 Nätverksanslutningen till Linux-VM verifierades med:
 
-```powershell
 Test-Connection 192.168.1.50
 
 Windows nätverksinställningar kontrollerades med:
 
-```powershell
 ipconfig /all
-```
+
+
 
 ## AI-logg & Reflektion (Kursmål 11)
 
