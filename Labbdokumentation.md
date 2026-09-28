@@ -27,59 +27,73 @@ Kommunikationen testades i båda riktningarna. Från Linux användes `ping 192.1
  ### Linux – Bash
 Katalogen /var/systementor/konsultdata skapades via kommandoraden:
 
+```bash
 sudo mkdir -p /var/systementor/konsultdata
-
+```
 Filen anteckningar.txt skapades:
 
+```bash
 sudo touch /var/systementor/konsultdata/anteckningar.txt
-
+```
 Gruppen konsulter skapades:
 
+```bash
 sudo groupadd konsulter
-
+```
 Katalogen och filen tilldelades gruppen konsulter:
 
+```bash
 sudo chgrp konsulter /var/systementor/konsultdata
 
 sudo chgrp konsulter /var/systementor/konsultdata/anteckningar.txt
-
+```
 Behörigheterna sattes enligt principen om lägsta behörighet:
 
+```bash
 sudo chmod 750 /var/systementor/konsultdata
 
 sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
-
+```
 Behörigheterna kontrollerades med:
 
-sudo ls -la /var/systementor/konsultdata
+```bash
 
+sudo ls -la /var/systementor/konsultdata
+```
 Nätverksanslutningen till Windows-VM verifierades med:
 
+```bash
 ping 192.168.1.51
-
+```
 Linux-serverns nätverkskort kontrollerades med:
 
+```bash
 ip addr show
-
+```
 Nätverkskortet enp0s1 hade IPv4-adressen 192.168.1.50/24 och var aktivt.
 
  ### Windows – PowerShell
- 
+
 Mappen C:\Systementor\KonsultData skapades via PowerShell:
 
+```powershell
 New-Item -ItemType Directory -Path "C:\Systementor\KonsultData" -Force
 
 Behörighetsstrukturen för mappen kontrollerades med:
 
+```powershell
 Get-Acl "C:\Systementor\KonsultData"
 
 Nätverksanslutningen till Linux-VM verifierades med:
 
+```powershell
 Test-Connection 192.168.1.50
 
 Windows nätverksinställningar kontrollerades med:
 
+```powershell
 ipconfig /all
+```
 
 ## AI-logg & Reflektion (Kursmål 11)
 
@@ -109,7 +123,7 @@ sudo chmod 750 /var/systementor/konsultdata
 sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
 ```
 
-### Kritisk granskning och verifiering (11)
+### Kritisk granskning och verifiering
 
 Jag kontrollerade AI:s förslag genom att köra kommandona i min Linux-VM. Gruppen `konsulter` skapades utan fel. Därefter kontrollerades katalogen och filen med `ls -la`.
 
