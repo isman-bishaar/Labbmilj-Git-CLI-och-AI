@@ -99,7 +99,7 @@ ipconfig /all
 ```
 
 
-## AI-logg & Reflektion (Kursmål 11)
+## AI-logg och Utvärdering (Kursmål 11)
 
 ### Exakt prompt
 
@@ -129,8 +129,14 @@ sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
 
 ### Kritisk granskning och verifiering
 
-Jag kontrollerade AI:s förslag genom att köra kommandona i min Linux-VM. Gruppen `konsulter` skapades utan fel. Därefter kontrollerades katalogen och filen med `ls -la`.
+Jag kontrollerade AI:s förslag genom att köra kommandona i min Linux-VM. Svaret var korrekt: gruppen `konsulter` skapades utan fel och kommandona gjorde det uppgiften krävde.
 
-Jag verifierade även nätverksinställningarna med `ip addr show` och nätverksanslutningen med `ping`. På detta sätt kontrollerades att kommandona fungerade i den aktuella labbmiljön.
+Jag hittade inga hallucinationer eller föråldrade kommandon. Behörigheterna 750 och 640 följer principen om lägsta behörighet, eftersom andra användare inte får någon åtkomst. Jag såg inga säkerhetsbrister i förslaget.
+
+Jag verifierade resultatet genom att kontrollera katalogen och filen med:
+
+```bash
+ls -la /var/systementor/konsultdata
+```
 
 AI-svaret användes som stöd, men kommandona verifierades praktiskt innan resultatet dokumenterades.
