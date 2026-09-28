@@ -9,6 +9,25 @@ Kurs: Introduktion till yrkesrollen och grunderna i IT-infrastruktur (MYH 2025/4
 
 Denna dokumentation beskriver uppsättningen av en virtuell labbmiljö med en Linux-server och en Windows-klient. Dokumentationen innehåller även kommandoradsarbete i Linux och Windows, Git-versionering samt en kritisk reflektion kring användningen av generativ AI.
 
+
+## Git & Versionshantering (Kursmål 10)
+
+Projektet skapades i en lokal mapp på datorn och initierades som ett Git-repository via kommandoraden:
+
+```bash
+git init
+
+git log --oneline
+
+521290f Lägg till Git-avsnitt och utskrifter
+2df1176 Rätta PowerShell-formatering
+b447567 Rätta PowerShell-formatering
+415d07d Slutför labbdokumentationen
+34157c0 Förbättra Markdown-formatering
+b03470f Dokumentera kommandoradsarbete
+31c42b8 Dokumentera labbmiljö och nätverk
+1bfd884 Skapa grundstruktur för labbdokumentation
+
 ## Labbmiljö & Nätverk (kursmål 8)
 
 Labbmiljön består av två virtuella maskiner som körs i UTM. Linux-servern och Windows-klienten är anslutna till samma Host-Only-nätverk, `Network 0`, så att de kan kommunicera med varandra.
