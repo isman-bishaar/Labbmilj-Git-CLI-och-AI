@@ -1,7 +1,9 @@
 # Labbdokumentation
 
 **Namn:** Isman Bishaar Mahamud
+
 **Datum:** 2026-09-28
+
 **Kurs:** Introduktion till yrkesrollen och grunderna i IT-infrastruktur (MYH 2025/4008)
 
 ## 1. Introduktion
