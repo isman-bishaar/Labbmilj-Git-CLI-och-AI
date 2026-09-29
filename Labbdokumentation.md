@@ -152,46 +152,90 @@ Windows nätverksinställningar kontrollerades med:
 ipconfig /all
 ```
 
-## 5. AI-logg & reflektion (Kursmål 11)
+## 5. AI-logg och Utvärdering (Kursmål 11)
 
 ### 5.1 Exakt prompt
 
-> hur skapar jag en grupp i Linux, tilldelar mappen och filen till gruppen konsulter och ställer in behörigheter enligt principen om lägsta behörighet
+```text
+hur skapar jag en grupp i Linux, tilldelar mappen och filen till gruppen konsulter och ställer in behörigheter enligt principen om lägsta behörighet
+```
 
 ### 5.2 AI-verktygets svar
 
-AI rekommenderade att skapa gruppen med:
+För att skapa en grupp i Linux och tilldela en mapp och en fil till gruppen `konsulter` kan du använda följande kommandon.
+
+Först skapar du gruppen:
 
 ```bash
 sudo groupadd konsulter
 ```
 
-Därefter rekommenderades att tilldela katalogen och filen gruppen `konsulter` med:
+Skapa sedan katalogen och filen om de inte redan finns:
+
+```bash
+sudo mkdir -p /var/systementor/konsultdata
+sudo touch /var/systementor/konsultdata/anteckningar.txt
+```
+
+Tilldela därefter katalogen och filen till gruppen `konsulter`:
 
 ```bash
 sudo chgrp konsulter /var/systementor/konsultdata
 sudo chgrp konsulter /var/systementor/konsultdata/anteckningar.txt
 ```
 
-För att ställa in behörigheterna rekommenderades:
+För att följa principen om lägsta behörighet kan du sätta följande behörigheter:
 
 ```bash
 sudo chmod 750 /var/systementor/konsultdata
 sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
 ```
 
-### 5.3 Kritisk granskning och verifiering
+Behörigheten `750` på katalogen innebär att ägaren har fullständiga rättigheter, gruppen kan läsa, skriva och gå in i katalogen, medan andra användare inte har någon åtkomst.
 
-Jag kontrollerade AI:s förslag genom att köra kommandona i min Linux-VM. Gruppen `konsulter` skapades utan fel och kommandona gav det förväntade resultatet.
+Behörigheten `640` på filen innebär att ägaren kan läsa och skriva, gruppen kan läsa och andra användare inte har någon åtkomst.
 
-Jag verifierade även behörigheterna genom att kontrollera katalogen och filen med:
+Kontrollera slutligen resultatet med:
 
 ```bash
 sudo ls -la /var/systementor/konsultdata
 ```
 
-Resultatet visade att katalogen hade behörigheten `750` och filen hade `640`. Detta stämmer med den valda behörighetsmodellen.
+På så sätt kan du verifiera att gruppen och behörigheterna har ställts in korrekt.
+
+### 5.3 Kritisk granskning och verifiering
+
+Jag granskade AI-verktygets svar och kontrollerade kommandona praktiskt i min Linux-VM.
+
+Jag verifierade att gruppen `konsulter` skapades med:
+
+```bash
+sudo groupadd konsulter
+```
+
+Jag kontrollerade även att katalogen och filen kunde tilldelas gruppen `konsulter` med:
+
+```bash
+sudo chgrp konsulter /var/systementor/konsultdata
+sudo chgrp konsulter /var/systementor/konsultdata/anteckningar.txt
+```
+
+Behörigheterna sattes med:
+
+```bash
+sudo chmod 750 /var/systementor/konsultdata
+sudo chmod 640 /var/systementor/konsultdata/anteckningar.txt
+```
+
+Resultatet kontrollerades med:
+
+```bash
+sudo ls -la /var/systementor/konsultdata
+```
 
 Jag verifierade även nätverksinställningarna med `ip addr show` och nätverksanslutningen med `ping`.
 
-AI-svaret användes som stöd, men kommandona verifierades praktiskt i den aktuella labbmiljön innan resultatet dokumenterades.
+Jag identifierade inga hallucinationer eller föråldrade kommandon i det AI-svar som användes. Jag kontrollerade även behörigheterna och såg att katalogen hade `750` och filen hade `640`. Det innebar att andra användare inte fick någon åtkomst, vilket stämde med den valda behörighetsmodellen.
+
+AI-svaret användes som stöd, men jag verifierade kommandona praktiskt i den aktuella labbmiljön innan resultatet dokumenterades.
+
