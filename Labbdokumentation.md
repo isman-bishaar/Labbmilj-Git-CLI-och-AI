@@ -156,7 +156,7 @@ ipconfig /all
 
 ### 5.1 Exakt prompt
 
-```text
+```bash
 hur skapar jag en grupp i Linux, tilldelar mappen och filen till gruppen konsulter och ställer in behörigheter enligt principen om lägsta behörighet
 ```
 
@@ -233,9 +233,18 @@ Resultatet kontrollerades med:
 sudo ls -la /var/systementor/konsultdata
 ```
 
-Jag verifierade även nätverksinställningarna med `ip addr show` och nätverksanslutningen med `ping`.
+**Var koden och förklaringen korrekt?**
+Ja. Kommandona fungerade i min Linux-VM och gav det förväntade resultatet. Gruppen `konsulter` skapades, katalogen och filen tilldelades gruppen och behörigheterna sattes till `750` för katalogen och `640` för filen.
 
-Jag identifierade inga hallucinationer eller föråldrade kommandon i det AI-svar som användes. Jag kontrollerade även behörigheterna och såg att katalogen hade `750` och filen hade `640`. Det innebar att andra användare inte fick någon åtkomst, vilket stämde med den valda behörighetsmodellen.
+**Fanns det några hallucinationer eller föråldrade kommandon?**
+Jag identifierade inga hallucinationer eller föråldrade kommandon i AI-svaret. De föreslagna kommandona fungerade i den aktuella labbmiljön.
+
+**Fanns det några säkerhetsbrister?**
+Jag identifierade inga allvarliga säkerhetsbrister i förslaget för den aktuella labbmiljön. Behörigheterna `750` för katalogen och `640` för filen begränsar åtkomsten för andra användare och följer principen om lägsta behörighet.
+
+**Hur verifierade jag svaret?**
+Jag verifierade kommandona genom att köra dem i min Linux-VM och kontrollera resultatet med `sudo ls -la /var/systementor/konsultdata`. Jag verifierade även nätverksinställningarna med `ip addr show` och nätverksanslutningen med `ping 192.168.1.51`.
 
 AI-svaret användes som stöd, men jag verifierade kommandona praktiskt i den aktuella labbmiljön innan resultatet dokumenterades.
+
 
